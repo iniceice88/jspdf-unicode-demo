@@ -1,21 +1,33 @@
 <script setup lang="ts">
 import './NotoSansCJKsc-normal'
+import './THSarabunNew-normal'
 import jsPDF from "jspdf";
 import {onMounted} from "vue";
 
 function genPdf() {
   const doc = new jsPDF();
-  doc.setFontSize(40);
+  doc.setFontSize(30);
   doc.setFont("NotoSansCJKsc");
 
-  // japanese
-  doc.text("天気がいいから 散歩しましょう", 5, 25);
-  // chinese
-  doc.text("是中文呀", 5, 65);
-  // korean
-  doc.text("안녕하세요, 만나서 반갑습니다", 5, 105);
+  const lineHeight = 20
+  let top = 25
 
-  //doc.output('pdfobjectnewwindow')
+  // japanese
+  doc.text("天気がいいから 散歩しましょう", 5, top);
+
+  top += lineHeight
+  // chinese
+  doc.text("是中文呀", 5, top);
+
+  top += lineHeight
+  // korean
+  doc.text("안녕하세요, 만나서 반갑습니다", 5, top);
+
+  // thai
+  top += lineHeight
+  doc.setFont("THSarabunNew");
+  doc.text("สวัสดี", 5, top);
+
   return doc
 }
 
